@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/ui.css">
+<meta charset="UTF-8">
+<title>SIPETA Dashboard</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <div id="notif"></div>
+
+
+<script>
+if(!localStorage.getItem("loginUser")){
+  location.href="index.html";
+}
+</script>
+
+<div class="sidebar">
+
+  <!-- LOGO -->
+<div class="logo">
+  <svg class="logo-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <!-- background -->
+    <rect x="6" y="6" width="52" height="52" rx="16"/>
+
+    <!-- book -->
+    <path d="M22 18h18a4 4 0 0 1 4 4v24a4 4 0 0 0-4-4H22a4 4 0 0 0-4 4V22a4 4 0 0 1 4-4z"/>
+
+    <!-- checklist -->
+    <path d="M26 28h10M26 34h10M26 40h6"/>
+    <path d="M40 38l2 2 4-4"/>
+  </svg>
+
+  <span class="logo-text">SIPETA</span>
+</div>
+
+  <!-- MENU -->
+  <nav class="menu">
+    <a class="active" onclick="tampilkanSemua()">Dashboard</a>
+    <a onclick="tampilkanTugas()">Tugas</a>
+    <a onclick="tampilkanKalender()">Kalender</a>
+    <a onclick="tampilkanSelesai()">Selesai</a>
+    <div class="logout" onclick="logout()">Logout</div>
+  </nav>
+
+</div>
+
+  <!-- MENU SIDEBAR (INI YANG TADI HILANG) -->
+  <a onclick="tampilkanSemua()">Dashboard</a>
+  <a onclick="tampilkanTugas()">Tugas</a>
+  <a onclick="tampilkanKalender()">Kalender</a>
+  <a onclick="tampilkanSelesai()">Selesai</a>
+
+</div>
+
+<div class="main">
+  <div class="top">
+    <div>
+      <h2 id="halo"></h2>
+      <span>Progress Minggu Ini • <b id="count"></b> tugas</span>
+    </div>
+    <input 
+  type="text" 
+  id="search"
+  placeholder="Cari tugas..."
+  oninput="searchTugas()"
+/>
+
+    <button onclick="bukaModal()">+ Tambah Tugas</button>
+  </div>
+
+  <div class="cards" id="list"></div>
+
+  <!-- KALENDER -->
+<div class="calendar" id="calendar" style="display:none">
+  <div class="cal-header">
+    <button onclick="prevMonth()">‹</button>
+    <h3 id="calTitle"></h3>
+    <button onclick="nextMonth()">›</button>
+  </div>
+  <div class="cal-grid" id="calGrid"></div>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3 id="modalTitle">Tambah Tugas</h3>
+
+    <input type="text" id="matkul" placeholder="Mata Kuliah">
+    <input type="text" id="desk" placeholder="Deskripsi">
+    <input type="datetime-local" id="deadline">
+    
+    <select id="icon">
+      <option value="📘">📘 Buku</option>
+      <option value="💻">💻 Laptop</option>
+      <option value="📌">📌 Pin</option>
+      <option value="📊">📊 Statistik</option>
+       <option value="⚽">⚽ Bola</option>
+      <option value="🎧">🎧 Musik</option>
+      <option value="💅🏻">💅🏻 Kecantikan</option>
+      <option value="🎀">🎀 Pita</option>
+      </select>
+<div class="modal-actions">
+    <button onclick="simpan()">Simpan</button>
+    <button class="batal" onclick="tutup()">Batal</button>
+  </div>
+    </div>
+      </div>
+
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/tugas.js"></script>
+
+<!-- POPUP NOTIF -->
+<div id="notifPopup" class="notif-overlay">
+  <div class="notif-box">
+    <h3>⏰ Deadline Hari Ini</h3>
+    <p>Ada tugas yang harus kamu selesaikan hari ini!</p>
+    <button onclick="tutupNotif()">Siap 💪</button>
+  </div>
+</div>
+
+<audio id="notifSound" preload="auto">
+  <source src="assets/sound/notif.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const tugas = JSON.parse(localStorage.getItem("tugas")) || [];
+  const today = new Date().toISOString().split("T")[0];
+
+  let hariIni = 0;
+  let telat = 0;
+
+  tugas.forEach(t => {
+    if (t.status !== "selesai") {
+      if (t.deadline === today) hariIni++;
+      if (t.deadline < today) telat++;
+    }
+  });
+
+  const notif = document.getElementById("notif");
+
+  if (hariIni > 0 || telat > 0) {
+    notif.innerHTML = `
+      <div style="
+        background:#fff3cd;
+        color:#856404;
+        padding:12px;
+        border-radius:8px;
+        margin-bottom:15px;
+        font-weight:600;
+      ">
+        ${hariIni > 0 ? `⚠️ ${hariIni} tugas deadline hari ini<br>` : ""}
+        ${telat > 0 ? `⛔ ${telat} tugas sudah lewat` : ""}
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>

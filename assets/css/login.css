@@ -1,0 +1,46 @@
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:linear-gradient(135deg,#f7f9ff,#eef3ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.login-box{
+  background:white;
+  padding:40px;
+  width:360px;
+  border-radius:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.login-box h1{
+  margin-bottom:6px;
+}
+
+.login-box p{
+  color:#7a8bbd;
+  margin-bottom:20px;
+}
+
+.login-box input{
+  width:100%;
+  padding:14px;
+  margin-bottom:14px;
+  border-radius:14px;
+  border:1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-box button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:#6c8cff;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+}

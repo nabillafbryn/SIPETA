@@ -1,0 +1,355 @@
+/* =====================
+   GLOBAL
+===================== */
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:#eef3ff;
+}
+
+/* =====================
+   SIDEBAR (FINAL)
+===================== */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:260px;
+  height:100vh;
+  padding:24px;
+  background:linear-gradient(180deg,#1e293b,#0f172a);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  border-radius:0 24px 24px 0;
+  box-shadow:10px 0 30px rgba(0,0,0,.15);
+  z-index:10;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+}
+
+/* background rounded pastel */
+.logo-icon rect {
+  fill: linear-gradient(135deg, #7f9cff, #a9bcff);
+}
+
+/* buku */
+.logo-icon path:first-of-type {
+  fill: white;
+  opacity: 0.95;
+}
+
+/* garis teks buku */
+.logo-icon path:nth-of-type(2),
+.logo-icon path:nth-of-type(3),
+.logo-icon path:nth-of-type(4) {
+  stroke: #6c8cff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+}
+
+/* centang */
+.logo-icon path:last-of-type {
+  stroke: #4caf50;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+/* MENU */
+.menu a{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:12px 14px;
+  border-radius:14px;
+  color:#e6ecff;
+  text-decoration:none;
+  font-size:15px;
+  transition:.2s;
+}
+
+.menu a .icon{
+  font-size:18px;
+  width:22px;
+  text-align:center;
+  opacity:.9;
+}
+
+.menu a .text{
+  display:inline-block;
+}
+
+.menu a:hover{
+  background:rgba(255,255,255,.08);
+}
+
+.menu a.active{
+  background:#4f7cff;
+  color:white;
+}
+
+/* LOGOUT */
+.logout{
+  margin-top:auto;
+  padding:14px 16px;
+  border-radius:14px;
+  cursor:pointer;
+  color:#cbd5f5;
+  transition:.3s;
+}
+
+.logout:hover{
+  background:rgba(239,68,68,.15);
+  color:white;
+}
+
+/* =====================
+   MAIN LAYOUT (FIX NUTUP)
+===================== */
+.main{
+  margin-left:260px;   /* HARUS sama dengan sidebar */
+  padding:40px;
+  min-height:auto;
+}
+
+/* =====================
+   HEADER / HERO
+===================== */
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:linear-gradient(135deg,#f7f9ff,#eef3ff);
+  border-radius:28px;
+  padding:35px 40px;
+  box-shadow:0 15px 40px rgba(0,0,0,.06);
+}
+
+.top h2{
+  font-size:28px;
+  margin-bottom:6px;
+}
+
+.top span{
+  font-size:14px;
+  color:#7a8bbd;
+}
+
+.top button{
+  background:#6c8cff;
+  border:none;
+  padding:14px 24px;
+  border-radius:16px;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(108,140,255,.35);
+}
+
+#search{
+  padding:14px 18px;
+  border-radius:16px;
+  border:1px solid #dbe3ff;
+  font-size:14px;
+  width:240px;
+  outline:none;
+  background:white;
+}
+
+#search:focus{
+  border-color:#6c8cff;
+  box-shadow:0 0 0 3px rgba(108,140,255,.15);
+}
+
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal-box{
+  background:white;
+  padding:30px;
+  width: 340px;
+  border-radius:22px;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  animation: pop .25s ease;
+
+  max-height: 80vh;
+  overflow: visible;
+  padding-bottom: 24px;
+}
+
+@keyframes pop{
+  from{
+    transform: scale(.9);
+    opacity: 0;
+  }
+  to{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-box input{
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.modal-box select{
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.modal-box button{
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: #6c8cff;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.modal-box .batal{
+  background: #e5e5e5;
+  color: #333;
+}
+
+.modal-box{
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.modal-box select,
+.modal-box input{
+  flex-shrink: 0;
+}
+
+.modal-actions{
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.modal-actions button{
+  width: auto;              /* ⬅️ OVERRIDE */
+  flex: 1;
+  margin-top: 0;            /* ⬅️ OVERRIDE */
+}
+
+.modal-actions .btn-simpan{
+  background: #6c8cff;
+  color: white;
+}
+
+.modal-actions .btn-batal{
+  background: #e5e5e5;
+  color: #333;
+}
+
+.action button{
+  padding:8px 14px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+}
+
+.action button:contains("Undo"){
+  background:#e5e7eb;
+  color:#374151;
+}
+
+/* POPUP NOTIF */
+.notif-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.notif-box{
+  background: white;
+  padding: 30px;
+  width: 320px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,.3);
+  animation: pop .3s ease;
+}
+
+.notif-box h3{
+  margin-bottom: 10px;
+}
+
+.notif-box p{
+  color: #6b7bbf;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.notif-box button{
+  background: #6c8cff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 14px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@keyframes pop{
+  from{
+    transform: scale(.85);
+    opacity: 0;
+  }
+  to{
+    transform: scale(1);
+    opacity: 1;
+  }
+}

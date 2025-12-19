@@ -1,0 +1,202 @@
+/* =====================
+   CARD GRID
+===================== */
+.cards{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+
+/* =====================
+   TASK CARD
+===================== */
+.task-card{
+  background:rgba(255,255,255,.95);
+  border-radius:24px;
+  padding:22px 24px;
+  box-shadow:0 20px 45px rgba(0,0,0,.07);
+  transition:.25s;
+  animation:fadeUp .45s ease;
+}
+
+.task-card:hover{
+  transform:translateY(-6px);
+}
+
+.task-header{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:10px;
+}
+
+.task-icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:#e6ecff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  transition:.3s;
+}
+
+.task-card:hover .task-icon{
+  transform:rotate(-5deg) scale(1.05);
+}
+
+.task-header h4{
+  margin:0;
+  font-size:16px;
+}
+
+.task-header small{
+  color:#7a8bbd;
+  font-size:13px;
+}
+
+/* =====================
+   BADGE
+===================== */
+.badge{
+  display:inline-block;
+  margin:10px 0;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:13px;
+  transition:.25s;
+}
+
+.badge:hover{
+  transform:scale(1.05);
+}
+
+.soon{ background:#ffe3a3; }
+.late{ background:#ffb3b3; }
+.done{ background:#b8f1cc; }
+
+/* =====================
+   ACTION
+===================== */
+.action{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+}
+
+.action button{
+  background:#6c8cff;
+  border:none;
+  padding:10px 18px;
+  border-radius:14px;
+  color:white;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.action button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(108,140,255,.45);
+}
+
+.action span{
+  padding:10px 14px;
+  border-radius:12px;
+  background:#f1f4ff;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.action span:hover{
+  background:#e6ebff;
+}
+
+/* =====================
+   KALENDER (FINAL)
+===================== */
+.calendar{
+  margin-top:40px;
+  background:white;
+  padding:30px;
+  border-radius:26px;
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.cal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.cal-header button{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:none;
+  background:#6c8cff;
+  color:white;
+  cursor:pointer;
+}
+
+.cal-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:8px;
+}
+
+.cal-day{
+  color:#7a8bbd;
+  text-align:center;
+  padding:10px 0;
+}
+
+.cal-cell{
+  position:relative;
+  text-align:center;
+  padding:10px 0;
+  border-radius:14px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.cal-cell:hover{
+  background:#eef3ff;
+}
+
+.cal-cell.has-task{
+  background:#fff3d6;
+}
+
+.cal-cell.today{
+  background:#6c8cff;
+  color:white;
+  box-shadow:0 8px 20px rgba(108,140,255,.35);
+}
+
+.dot{
+  width:6px;
+  height:6px;
+  background:#6c8cff;
+  border-radius:50%;
+  position:absolute;
+  bottom:6px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* =====================
+   ANIMATION
+===================== */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
